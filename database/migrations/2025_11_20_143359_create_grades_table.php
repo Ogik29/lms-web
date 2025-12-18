@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('grades', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+
+            // 'student_id' merujuk ke murid yang dinilai
+            $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
+
+            // 'grader_id' merujuk ke guru yang memberikan nilai
+            $table->foreignId('grader_id')->constrained('users')->onDelete('cascade');
+
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->integer('score');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('grades');
+    }
+};
