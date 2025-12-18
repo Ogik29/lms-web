@@ -131,8 +131,15 @@ class StudentController extends Controller
         }
 
         if ($existing) {
+            // mark as edited when updating an existing submission
+            $data['is_edited'] = true;
+            $data['edited_at'] = now();
             $existing->update($data);
         } else {
+            // set per-submission deadline to assignment due_date by default
+            if ($assignment->due_date) {
+                $data['deadline'] = $assignment->due_date;
+            }
             $assignment->submissions()->create(array_merge(['student_id' => $user->id], $data));
         }
 

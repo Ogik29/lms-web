@@ -148,9 +148,36 @@ class TeacherController extends Controller
             abort(403);
         }
 
-        $assignment->load('submissions.student');
+        $assignment->load('submissions.student', 'course.students');
 
         return view('guru.course.submissions', compact('assignment'));
+    }
+
+    public function setSubmissionDeadline(Request $request, Assignment $assignment)
+    {
+        if ($assignment->course->teacher_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'student_id' => 'required|exists:users,id',
+            'deadline' => 'nullable|date',
+        ]);
+
+        // ensure the student belongs to the course
+        if (! $assignment->course->students->contains('id', $validated['student_id'])) {
+            abort(403);
+        }
+
+        $submission = Submission::firstOrNew([
+            'assignment_id' => $assignment->id,
+            'student_id' => $validated['student_id'],
+        ]);
+
+        $submission->deadline = $validated['deadline'] ? now()->createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', strtotime($validated['deadline']))) : null;
+        $submission->save();
+
+        return back()->with('success', 'Deadline submisi diperbarui.');
     }
 
     public function pendingSubmissions()
@@ -182,6 +209,34 @@ class TeacherController extends Controller
         ]);
 
         return back()->with('success', 'Nilai tersimpan.');
+    }
+
+    // Show edit form for an assignment (teacher edits assignment details)
+    public function editAssignment(Course $course, Assignment $assignment)
+    {
+        if ($course->teacher_id !== Auth::id() || $assignment->course_id !== $course->id) {
+            abort(403);
+        }
+
+        return view('guru.assignments.edit', compact('course', 'assignment'));
+    }
+
+    // Update assignment (teacher)
+    public function updateAssignment(Request $request, Course $course, Assignment $assignment)
+    {
+        if ($course->teacher_id !== Auth::id() || $assignment->course_id !== $course->id) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date' => 'nullable|date',
+        ]);
+
+        $assignment->update($validated);
+
+        return redirect()->route('teacher.courses.show', $course)->with('success', 'Tugas diperbarui.');
     }
 
     public function removeStudent(Course $course, User $student)

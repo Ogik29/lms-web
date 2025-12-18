@@ -73,8 +73,8 @@
               <div class="card mb-3">
                 <div class="card-body text-center">
                   <h6 class="mb-0">Statistik</h6>
-                  <p class="mb-0 text-muted">Tugas: <strong>{{ $course->assignments->count() }}</strong></p>
-                  <p class="mb-0 text-muted">Jadwal: <strong>{{ $course->schedules->count() }}</strong></p>
+                  <p class="mb-0 text-muted">Tugas: <strong>{{ $course->assignments->count() }}</strong></p> <br>
+                  {{-- <p class="mb-0 text-muted">Jadwal: <strong>{{ $course->schedules->count() }}</strong></p> --}}
                 </div>
               </div>
             </div>
@@ -177,8 +177,9 @@
                       <td>{{ $a->due_date ? $a->due_date->format('Y-m-d H:i') : '-' }}</td>
                       <td>{{ $a->submissions->count() }}</td>
                       <td class="text-end">
+                        <a href="{{ route('teacher.courses.assignments.edit', [$course, $a]) }}" class="btn btn-sm btn-outline-success me-2"><i class="fas fa-pen me-1"></i> Edit</a>
                         <a href="{{ route('teacher.assignments.submissions.index', $a) }}" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye me-1"></i> Submisi</a>
-                        <form action="{{ route('teacher.courses.assignments.destroy', [$course, $a]) }}" method="POST" class="d-inline" data-confirm="Hapus tugas ini?" data-confirm-title="Hapus Tugas">
+                        <form action="{{ route('teacher.courses.assignments.destroy', [$course, $a]) }}" method="POST" class="d-inline" data-confirm="Hapus tugas ini?" data-confirm-title="Hapus">
                           @csrf
                           @method('DELETE')
                           <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash me-1"></i> Hapus</button>

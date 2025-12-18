@@ -15,6 +15,9 @@ class Submission extends Model
         'content',
         'file_path',
         'submitted_at',
+        'is_edited',
+        'edited_at',
+        'deadline',
         'score',
         'grader_id',
         'graded_at',
@@ -22,7 +25,10 @@ class Submission extends Model
 
     protected $casts = [
         'submitted_at' => 'datetime',
+        'edited_at' => 'datetime',
+        'deadline' => 'datetime',
         'graded_at' => 'datetime',
+        'is_edited' => 'boolean',
     ];
 
     public function assignment()

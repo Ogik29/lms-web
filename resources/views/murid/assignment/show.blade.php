@@ -19,12 +19,23 @@
             <h5 class="mt-4">Pengiriman Anda</h5>
             @if($submission)
                 <div class="card mb-3"><div class="card-body">
-                    <p>{{ $submission->content }}</p>
-                    <p class="text-muted">Dikirim: {{ $submission->submitted_at ? $submission->submitted_at->format('Y-m-d H:i') : '-' }}</p>
-                    <p><strong>Skor:</strong> {{ $submission->score ?? 'Belum dinilai' }}</p>
-                    @if($assignment->due_date && $submission->submitted_at && $submission->submitted_at->gt($assignment->due_date))
-                        <p><span class="badge bg-warning">Dikirim terlambat</span></p>
-                    @endif
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p>{{ $submission->content }}</p>
+                                            <p class="text-muted">Dikirim: {{ $submission->submitted_at ? $submission->submitted_at->format('Y-m-d H:i') : '-' }}</p>
+                            <p class="text-muted">Deadline: {{ ($submission->deadline ?? $assignment->due_date) ? ($submission->deadline ?? $assignment->due_date)->format('Y-m-d H:i') : '-' }}</p>
+                            <p><strong>Skor:</strong> {{ $submission->score ?? 'Belum dinilai' }}</p>
+                        </div>
+                        <div class="text-end">
+                            @if($submission->is_edited)
+                                <p><span class="badge bg-info">Edited</span></p>
+                            @endif
+                            @php $effectiveDeadline = $submission->deadline ?? $assignment->due_date; @endphp
+                            @if($effectiveDeadline && $submission->submitted_at && $submission->submitted_at->gt($effectiveDeadline))
+                                <p><span class="badge bg-warning">Dikirim terlambat</span></p>
+                            @endif
+                        </div>
+                    </div>
                     @if($submission->file_path)
                         <p class="mt-2">File: <a href="{{ asset('storage/' . $submission->file_path) }}" target="_blank">Download</a></p>
                         @php $ext = strtolower(pathinfo($submission->file_path, PATHINFO_EXTENSION)); @endphp
@@ -34,13 +45,18 @@
                     @endif
                 </div></div>
             @else
-                <div class="alert alert-info">Anda belum mengirim tugas ini.</div>
+
+                @if($effectiveDeadline && now()->gt($effectiveDeadline))
+                    <div class="alert alert-danger">Tenggat waktu telah lewat dan Anda belum mengumpulkan tugas ini.</div>
+                @else
+                    <div class="alert alert-info">Anda belum mengirim tugas ini.</div>
+                @endif
             @endif
 
             <form action="{{ route('student.assignments.submit', $assignment) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label">Jawaban (teks)</label>
+                    <label class="form-label">Pesan (teks)</label>
                     <textarea name="content" class="form-control" rows="6">{{ old('content', $submission->content ?? '') }}</textarea>
                 </div>
 

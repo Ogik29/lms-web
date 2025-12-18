@@ -71,6 +71,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/teacher/courses/{course}/assignments', [TeacherController::class, 'storeAssignment'])->name('teacher.courses.assignments.store');
         Route::delete('/teacher/courses/{course}/assignments/{assignment}', [TeacherController::class, 'destroyAssignment'])->name('teacher.courses.assignments.destroy');
         Route::get('/teacher/assignments/{assignment}/submissions', [TeacherController::class, 'submissions'])->name('teacher.assignments.submissions.index');
+        Route::post('/teacher/assignments/{assignment}/submissions/deadline', [TeacherController::class, 'setSubmissionDeadline'])->name('teacher.assignments.submissions.deadline');
+        // Assignment edit by teacher
+        Route::get('/teacher/courses/{course}/assignments/{assignment}/edit', [TeacherController::class, 'editAssignment'])->name('teacher.courses.assignments.edit');
+        Route::put('/teacher/courses/{course}/assignments/{assignment}', [TeacherController::class, 'updateAssignment'])->name('teacher.courses.assignments.update');
         Route::post('/teacher/submissions/{submission}/grade', [TeacherController::class, 'gradeSubmission'])->name('teacher.submissions.grade');
         Route::get('/teacher/submissions/pending', [TeacherController::class, 'pendingSubmissions'])->name('teacher.submissions.pending');
 
