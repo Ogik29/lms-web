@@ -16,7 +16,20 @@
                     @forelse($submissions as $sub)
                     <tr>
                         <td>{{ $sub->assignment->title }}</td>
-                        <td>{{ $sub->student->name }}</td>
+                        <td>
+                            {{ $sub->student->name }}
+                            @if($sub->submitted_at)
+                                @php 
+                                    $deadline = $sub->deadline ?? $sub->assignment->due_date;
+                                    $isLate = $deadline && $sub->submitted_at->gt($deadline);
+                                @endphp
+                                @if($isLate)
+                                    <span class="badge bg-warning text-dark ms-2">
+                                        <i class="fas fa-clock"></i> Terlambat
+                                    </span>
+                                @endif
+                            @endif
+                        </td>
                         <td>{{ $sub->submitted_at ? $sub->submitted_at->format('Y-m-d H:i') : '-' }}</td>
                         <td><a href="{{ route('teacher.assignments.submissions.index', $sub->assignment) }}" class="btn btn-sm btn-outline-primary">Buka & Nilai</a></td>
                     </tr>

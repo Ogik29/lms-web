@@ -23,6 +23,17 @@
                                 @if($sub && $sub->is_edited)
                                     <span class="badge bg-info ms-2">Edited</span>
                                 @endif
+                                @if($sub && $sub->submitted_at)
+                                    @php 
+                                        $deadline = $sub->deadline ?? $assignment->due_date;
+                                        $isLate = $deadline && $sub->submitted_at->gt($deadline);
+                                    @endphp
+                                    @if($isLate)
+                                        <span class="badge bg-warning text-dark ms-2">
+                                            <i class="fas fa-clock"></i> Terlambat
+                                        </span>
+                                    @endif
+                                @endif
                             </td>
                             <td>
                                 @if($sub)

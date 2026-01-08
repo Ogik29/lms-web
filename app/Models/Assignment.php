@@ -14,6 +14,7 @@ class Assignment extends Model
         'title',
         'description',
         'due_date',
+        'type',
     ];
 
     protected $casts = [
@@ -28,5 +29,15 @@ class Assignment extends Model
     public function submissions()
     {
         return $this->hasMany(Submission::class, 'assignment_id', 'id');
+    }
+
+    public function quiz()
+    {
+        return $this->hasOne(\App\Models\Quiz::class);
+    }
+
+    public function isQuiz()
+    {
+        return $this->type === 'quiz';
     }
 }

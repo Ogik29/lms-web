@@ -16,6 +16,10 @@
 
             @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
 
+            @php 
+                $effectiveDeadline = $submission ? ($submission->deadline ?? $assignment->due_date) : $assignment->due_date; 
+            @endphp
+
             <h5 class="mt-4">Pengiriman Anda</h5>
             @if($submission)
                 <div class="card mb-3"><div class="card-body">
@@ -23,14 +27,13 @@
                         <div>
                             <p>{{ $submission->content }}</p>
                                             <p class="text-muted">Dikirim: {{ $submission->submitted_at ? $submission->submitted_at->format('Y-m-d H:i') : '-' }}</p>
-                            <p class="text-muted">Deadline: {{ ($submission->deadline ?? $assignment->due_date) ? ($submission->deadline ?? $assignment->due_date)->format('Y-m-d H:i') : '-' }}</p>
+                            <p class="text-muted">Deadline: {{ $effectiveDeadline ? $effectiveDeadline->format('Y-m-d H:i') : '-' }}</p>
                             <p><strong>Skor:</strong> {{ $submission->score ?? 'Belum dinilai' }}</p>
                         </div>
                         <div class="text-end">
                             @if($submission->is_edited)
                                 <p><span class="badge bg-info">Edited</span></p>
                             @endif
-                            @php $effectiveDeadline = $submission->deadline ?? $assignment->due_date; @endphp
                             @if($effectiveDeadline && $submission->submitted_at && $submission->submitted_at->gt($effectiveDeadline))
                                 <p><span class="badge bg-warning">Dikirim terlambat</span></p>
                             @endif

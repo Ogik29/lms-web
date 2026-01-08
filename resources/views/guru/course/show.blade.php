@@ -160,13 +160,20 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Tugas</h5>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addAssignmentModal"><i class="fas fa-plus me-1"></i> Tambah Tugas</button>
+                <h5 class="mb-0">Tugas & Quiz</h5>
+                <div>
+                  <a href="{{ route('teacher.quiz.create', $course) }}" class="btn btn-sm btn-success me-2">
+                    <i class="fas fa-clipboard-question me-1"></i> Buat Quiz
+                  </a>
+                  <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addAssignmentModal">
+                    <i class="fas fa-plus me-1"></i> Tambah Tugas
+                  </button>
+                </div>
               </div>
 
               <div class="table-responsive">
                 <table class="table table-hover align-middle">
-                  <thead class="table-light"><tr><th>Judul</th><th>Due</th><th>Submisi</th><th class="text-end">Aksi</th></tr></thead>
+                  <thead class="table-light"><tr><th>Judul</th><th>Tipe</th><th>Due</th><th>Submisi/Attempts</th><th class="text-end">Aksi</th></tr></thead>
                   <tbody>
                     @forelse($course->assignments as $a)
                     <tr>
@@ -174,12 +181,42 @@
                         <div class="fw-bold">{{ $a->title }}</div>
                         <div class="text-muted small">{{ \Illuminate\Support\Str::limit($a->description, 100) }}</div>
                       </td>
+                      <td>
+                        @if($a->isQuiz())
+                          <span class="badge bg-info">
+                            <i class="fas fa-clipboard-question"></i> Quiz
+                          </span>
+                        @else
+                          <span class="badge bg-secondary">
+                            <i class="fas fa-file-alt"></i> Assignment
+                          </span>
+                        @endif
+                      </td>
                       <td>{{ $a->due_date ? $a->due_date->format('Y-m-d H:i') : '-' }}</td>
-                      <td>{{ $a->submissions->count() }}</td>
+                      <td>
+                        @if($a->isQuiz())
+                          {{ $a->quiz->attempts()->count() }} attempts
+                        @else
+                          {{ $a->submissions->count() }} submisi
+                        @endif
+                      </td>
                       <td class="text-end">
-                        <a href="{{ route('teacher.courses.assignments.edit', [$course, $a]) }}" class="btn btn-sm btn-outline-success me-2"><i class="fas fa-pen me-1"></i> Edit</a>
-                        <a href="{{ route('teacher.assignments.submissions.index', $a) }}" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye me-1"></i> Submisi</a>
-                        <form action="{{ route('teacher.courses.assignments.destroy', [$course, $a]) }}" method="POST" class="d-inline" data-confirm="Hapus tugas ini?" data-confirm-title="Hapus">
+                        @if($a->isQuiz())
+                          <a href="{{ route('teacher.quiz.results', $a) }}" class="btn btn-sm btn-outline-info me-2">
+                            <i class="fas fa-chart-bar me-1"></i> Hasil
+                          </a>
+                          <a href="{{ route('teacher.quiz.edit', [$course, $a]) }}" class="btn btn-sm btn-outline-success me-2">
+                            <i class="fas fa-pen me-1"></i> Edit
+                          </a>
+                        @else
+                          <a href="{{ route('teacher.courses.assignments.edit', [$course, $a]) }}" class="btn btn-sm btn-outline-success me-2">
+                            <i class="fas fa-pen me-1"></i> Edit
+                          </a>
+                          <a href="{{ route('teacher.assignments.submissions.index', $a) }}" class="btn btn-sm btn-outline-primary me-2">
+                            <i class="fas fa-eye me-1"></i> Submisi
+                          </a>
+                        @endif
+                        <form action="{{ route('teacher.courses.assignments.destroy', [$course, $a]) }}" method="POST" class="d-inline" data-confirm="Hapus {{ $a->isQuiz() ? 'quiz' : 'tugas' }} ini?" data-confirm-title="Hapus">
                           @csrf
                           @method('DELETE')
                           <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash me-1"></i> Hapus</button>
@@ -187,7 +224,7 @@
                       </td>
                     </tr>
                     @empty
-                    <tr><td colspan="4" class="text-center">Belum ada tugas.</td></tr>
+                    <tr><td colspan="5" class="text-center">Belum ada tugas atau quiz.</td></tr>
                     @endforelse
                   </tbody>
                 </table>

@@ -83,6 +83,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/teacher/courses/{course}/grades', [TeacherController::class, 'storeGrade'])->name('teacher.courses.grades.store');
         Route::put('/teacher/grades/{grade}', [TeacherController::class, 'updateGrade'])->name('teacher.grades.update');
         Route::delete('/teacher/grades/{grade}', [TeacherController::class, 'destroyGrade'])->name('teacher.grades.destroy');
+
+        // Quiz management
+        Route::get('/teacher/courses/{course}/quiz/create', [TeacherController::class, 'createQuiz'])->name('teacher.quiz.create');
+        Route::post('/teacher/courses/{course}/quiz', [TeacherController::class, 'storeQuiz'])->name('teacher.quiz.store');
+        Route::get('/teacher/courses/{course}/quiz/{assignment}/edit', [TeacherController::class, 'editQuiz'])->name('teacher.quiz.edit');
+        Route::put('/teacher/courses/{course}/quiz/{assignment}', [TeacherController::class, 'updateQuiz'])->name('teacher.quiz.update');
+        Route::get('/teacher/quiz/{assignment}/results', [TeacherController::class, 'viewQuizResults'])->name('teacher.quiz.results');
+        Route::get('/teacher/quiz/attempt/{attempt}', [TeacherController::class, 'viewStudentQuizAttempt'])->name('teacher.quiz.attempt.view');
+        Route::post('/teacher/quiz/answer/{answer}/grade', [TeacherController::class, 'gradeEssayQuestion'])->name('teacher.quiz.answer.grade');
     });
 
     // murid
@@ -95,5 +104,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/student/courses/{course}', [StudentController::class, 'showCourse'])->name('student.courses.show');
         Route::get('/student/assignments/{assignment}', [StudentController::class, 'showAssignment'])->name('student.assignments.show');
         Route::post('/student/assignments/{assignment}/submit', [StudentController::class, 'storeSubmission'])->name('student.assignments.submit');
+
+        // Quiz taking
+        Route::post('/student/quiz/{assignment}/start', [StudentController::class, 'startQuiz'])->name('student.quiz.start');
+        Route::get('/student/quiz/attempt/{attempt}', [StudentController::class, 'takeQuiz'])->name('student.quiz.take');
+        Route::post('/student/quiz/attempt/{attempt}/answer', [StudentController::class, 'submitQuizAnswer'])->name('student.quiz.answer.submit');
+        Route::post('/student/quiz/attempt/{attempt}/submit', [StudentController::class, 'submitQuiz'])->name('student.quiz.submit');
+        Route::get('/student/quiz/attempt/{attempt}/result', [StudentController::class, 'viewQuizResult'])->name('student.quiz.result');
     });
 });
