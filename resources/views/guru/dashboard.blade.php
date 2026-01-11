@@ -6,9 +6,9 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="h3 mb-0">Selamat Datang, Guru {{ $user->name }}!</h1>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate-fade-in">
+      <h1 class="h3 mb-0 gradient-heading">Selamat Datang, Guru {{ $user->name }}!</h1>
+      <button type="button" class="btn btn-modern-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
         <i class="fas fa-plus me-2"></i> Buat Kelas Baru
       </button>
     </div>
@@ -31,39 +31,42 @@
     @endif
 
     <!-- Statistik Cards -->
-            <div class="row">
+            <div class="row stagger-children">
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Total Kelas Aktif</h5>
-                            <p class="fs-1 fw-bold text-primary">{{ $coursesCount }}</p>
+                    <div class="stat-card-modern">
+                        <i class="fas fa-book-open stat-icon"></i>
+                        <div class="position-relative">
+                            <h6 class="text-white mb-2">Total Kelas Aktif</h6>
+                            <div class="stat-number">{{ $coursesCount }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Jumlah Siswa</h5>
-                            <p class="fs-1 fw-bold text-info">{{ $totalStudents }}</p>
+                    <div class="stat-card-modern stat-card-success">
+                        <i class="fas fa-users stat-icon"></i>
+                        <div class="position-relative">
+                            <h6 class="text-white mb-2">Jumlah Siswa</h6>
+                            <div class="stat-number">{{ $totalStudents }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <a href="{{ route('teacher.submissions.pending') }}" class="text-decoration-none text-dark">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Tugas Perlu Dinilai</h5>
-                            <p class="fs-1 fw-bold text-danger">{{ $tasksToGrade }}</p>
-                            <p class="text-muted small">Klik untuk lihat submisi yang menunggu</p>
+                    <a href="{{ route('teacher.submissions.pending') }}" class="text-decoration-none">
+                        <div class="stat-card-modern stat-card-info hover-scale-sm">
+                            <i class="fas fa-tasks stat-icon"></i>
+                            <div class="position-relative">
+                                <h6 class="text-white mb-2">Tugas Perlu Dinilai</h6>
+                                <div class="stat-number">{{ $tasksToGrade }}</div>
+                                <p class="text-white-50 small mb-0 mt-2">Klik untuk lihat submisi</p>
+                            </div>
                         </div>
-                        </a>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <div class="card shadow-sm">
+                    <div class="card card-modern animate-slide-up">
                         <div class="card-body">
                             <h5 class="card-title">Siswa per Kelas</h5>
                             <div style="height:240px">

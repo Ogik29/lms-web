@@ -6,35 +6,36 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1 class="h3 mb-4">Selamat Datang, {{ $user->name }}!</h1>
+    <h1 class="h3 mb-4 gradient-heading animate-fade-in">Selamat Datang, {{ $user->name }}!</h1>
     
-    <div class="row">
+    <div class="row stagger-children">
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Kelas Terdaftar</h5>
-                    <p class="fs-1 fw-bold text-primary">{{ $enrolledCoursesCount }}</p>
-                    <p class="card-text text-muted">Kelas yang sedang Anda ikuti.</p>
+            <div class="stat-card-modern">
+                <i class="fas fa-book-open stat-icon"></i>
+                <div class="position-relative">
+                    <h6 class="text-white mb-2">Kelas Terdaftar</h6>
+                    <div class="stat-number">{{ $enrolledCoursesCount }}</div>
+                    <p class="text-white-50 small mb-0 mt-2">Kelas yang sedang Anda ikuti</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Tugas Mendatang</h5>
-                     <!-- Data dinamis -->
-                    <p class="fs-1 fw-bold text-warning">{{ $tasksCount }}</p>
-                    <p class="card-text text-muted">Tugas yang perlu diselesaikan.</p>
+            <div class="stat-card-modern stat-card-warning">
+                <i class="fas fa-tasks stat-icon"></i>
+                <div class="position-relative">
+                    <h6 class="text-white mb-2">Tugas Mendatang</h6>
+                    <div class="stat-number">{{ $tasksCount }}</div>
+                    <p class="text-white-50 small mb-0 mt-2">Tugas yang perlu diselesaikan</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Total Nilai</h5>
-                     <!-- Data dinamis -->
-                    <p class="fs-1 fw-bold text-success">{{ $gradesCount }}</p>
-                    <p class="card-text text-muted">Total nilai yang sudah masuk.</p>
+            <div class="stat-card-modern stat-card-success">
+                <i class="fas fa-award stat-icon"></i>
+                <div class="position-relative">
+                    <h6 class="text-white mb-2">Total Nilai</h6>
+                    <div class="stat-number">{{ $gradesCount }}</div>
+                    <p class="text-white-50 small mb-0 mt-2">Nilai yang sudah masuk</p>
                 </div>
             </div>
         </div>
@@ -56,7 +57,7 @@
                     }
                 @endphp
                 <div class="col-md-6 mb-3">
-                    <div class="card shadow-sm h-100">
+                    <div class="card card-modern shadow-sm h-100 hover-lift">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <h5 class="card-title mb-0">{{ $task->title }}</h5>

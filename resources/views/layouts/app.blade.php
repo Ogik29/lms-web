@@ -18,6 +18,12 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Custom Animations -->
+    <link rel="stylesheet" href="{{ asset('css/animations.css') }}" />
+    
+    <!-- Enhanced Visual Styling -->
+    <link rel="stylesheet" href="{{ asset('css/enhanced-style.css') }}" />
 
     <style>
       body {
@@ -79,17 +85,21 @@
       </div>
     </nav>
 
-    <div class="container">
-      @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('success') }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-      @endif
-      @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session('error') }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-      @endif
-    </div>
-
     <main class="py-4">
         <div class="container">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            
             @yield('content')
         </div>
     </main>

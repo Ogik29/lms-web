@@ -17,7 +17,7 @@
           </div>
 
           <div class="d-flex align-items-center">
-            <div class="me-3 text-muted small">Kode: <span class="badge bg-secondary">{{ $course->code }}</span></div>
+            <div class="me-3 text-muted small">Kode: <span class="badge badge-vibrant-primary">{{ $course->code }}</span></div>
             <a href="{{ route('teacher.courses.edit', $course) }}" class="btn btn-outline-secondary me-2"><i class="fas fa-edit me-1"></i> Edit</a>
             <form action="{{ route('teacher.courses.destroy', $course) }}" method="POST" class="d-inline" data-confirm="Yakin ingin menghapus kelas ini?" data-confirm-title="Hapus Kelas">
               @csrf
@@ -30,7 +30,7 @@
 
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h2 class="h4 mb-1">Daftar Siswa — {{ $course->name }}</h2>
+          <h2 class="h4 mb-1 gradient-heading">Daftar Siswa — {{ $course->name }}</h2>
           <small class="text-muted">Total terdaftar: <strong>{{ $course->students->count() }}</strong></small>
         </div>
         <div>
@@ -38,12 +38,12 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card card-modern shadow-modern animate-fade-in">
         <div class="card-body">
-          <div class="mb-3"><input type="text" id="studentListSearch" class="form-control" placeholder="Cari siswa (nama / email)..."></div>
+          <div class="mb-3"><input type="text" id="studentListSearch" class="form-control form-control-modern" placeholder="Cari siswa (nama / email)..."></div>
 
           <div class="table-responsive">
-            <table id="studentListTable" class="table table-hover align-middle">
+            <table id="studentListTable" class="table table-modern align-middle">
               <thead class="table-light"><tr><th>Nama</th><th>Email</th><th class="text-end">Aksi</th></tr></thead>
               <tbody>
                 @forelse($course->students as $student)

@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuizQuestion extends Model
+class QuestionBank extends Model
 {
     use HasFactory;
 
+    protected $table = 'question_bank';
+
     protected $fillable = [
-        'quiz_id',
-        'question_bank_id',
+        'category_id',
+        'teacher_id',
         'question_text',
         'question_type',
         'points',
-        'order',
         'explanation',
     ];
 
@@ -23,24 +24,24 @@ class QuizQuestion extends Model
         'points' => 'decimal:2',
     ];
 
-    public function quiz()
+    public function category()
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(QuestionBankCategory::class, 'category_id');
     }
 
-    public function questionBank()
+    public function teacher()
     {
-        return $this->belongsTo(QuestionBank::class, 'question_bank_id');
+        return $this->belongsTo(User::class, 'teacher_id');
     }
 
     public function options()
     {
-        return $this->hasMany(QuizQuestionOption::class, 'question_id')->orderBy('order');
+        return $this->hasMany(QuestionBankOption::class)->orderBy('order');
     }
 
-    public function answers()
+    public function quizQuestions()
     {
-        return $this->hasMany(StudentQuizAnswer::class, 'question_id');
+        return $this->hasMany(QuizQuestion::class, 'question_bank_id');
     }
 
     public function isMultipleChoice()

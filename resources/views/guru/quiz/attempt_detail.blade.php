@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.teacher')
 
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <div class="card shadow-lg">
+            <div class="card card-modern shadow-modern animate-fade-in">
                 <div class="card-header bg-info text-white">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>

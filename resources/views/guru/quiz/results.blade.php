@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.teacher')
 
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-11">
-            <div class="card shadow">
+            <div class="card card-modern shadow-modern animate-fade-in">
                 <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
                     <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Hasil Quiz: {{ $assignment->title }}</h4>
                     <a href="{{ route('teacher.courses.show', $assignment->course) }}" class="btn btn-light btn-sm">
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     @if($assignment->quiz->attempts->count() > 0)
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle">
+                            <table class="table table-modern align-middle">
                                 <thead class="table-dark">
                                     <tr>
                                         <th><i class="fas fa-user me-1"></i>Nama Murid</th>

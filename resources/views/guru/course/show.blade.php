@@ -28,23 +28,23 @@
         </nav>
       </div>
 
-      <div class="d-flex justify-content-between align-items-start mb-3">
+      <div class="d-flex justify-content-between align-items-start mb-3 animate-fade-in">
         <div>
-          <h2 class="h4 mb-1">{{ $course->name }}</h2>
-          <small class="text-muted">Kode: <span class="badge bg-secondary">{{ $course->code }}</span></small>
+          <h2 class="h4 mb-1 gradient-heading">{{ $course->name }}</h2>
+          <small class="text-muted">Kode: <span class="badge badge-vibrant-primary">{{ $course->code }}</span></small>
         </div>
       </div>
 
       @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-modern alert-modern-success animate-slide-down">{{ session('success') }}</div>
       @endif
       @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
+        <div class="alert alert-modern alert-modern-danger animate-slide-down">{{ session('error') }}</div>
       @endif
 
-      <div class="card mb-4">
+      <div class="card card-modern mb-4 animate-slide-up">
         <div class="card-body">
-          <h5 class="card-title mb-1">Deskripsi</h5>
+          <h5 class="card-title mb-1"><i class="fas fa-info-circle me-2 text-primary"></i>Deskripsi</h5>
           <p class="text-muted mb-0">{{ $course->description ?? 'Tidak ada deskripsi.' }}</p>
         </div>
       </div>
@@ -59,22 +59,22 @@
 
       <div class="tab-content">
         <div class="tab-pane fade show active" id="overview">
-          <div class="row">
+          <div class="row stagger-children">
             <div class="col-md-8">
-              <div class="card mb-3">
+              <div class="card card-modern mb-3">
                 <div class="card-body">
-                  <h5 class="card-title">Ringkasan</h5>
+                  <h5 class="card-title"><i class="fas fa-chart-line me-2 text-info"></i>Ringkasan</h5>
                   <p class="mb-1"><strong>Guru:</strong> {{ $course->teacher->name ?? '-' }}</p>
                   <p class="mb-0 text-muted">Siswa terdaftar: <strong>{{ $course->students->count() }}</strong></p>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card mb-3">
-                <div class="card-body text-center">
-                  <h6 class="mb-0">Statistik</h6>
-                  <p class="mb-0 text-muted">Tugas: <strong>{{ $course->assignments->count() }}</strong></p> <br>
-                  {{-- <p class="mb-0 text-muted">Jadwal: <strong>{{ $course->schedules->count() }}</strong></p> --}}
+              <div class="stat-card-modern stat-card-info">
+                <i class="fas fa-tasks stat-icon"></i>
+                <div class="position-relative">
+                  <h6 class="text-white mb-2">Total Tugas</h6>
+                  <div class="stat-number">{{ $course->assignments->count() }}</div>
                 </div>
               </div>
             </div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\QuestionBankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/teacher/quiz/{assignment}/results', [TeacherController::class, 'viewQuizResults'])->name('teacher.quiz.results');
         Route::get('/teacher/quiz/attempt/{attempt}', [TeacherController::class, 'viewStudentQuizAttempt'])->name('teacher.quiz.attempt.view');
         Route::post('/teacher/quiz/answer/{answer}/grade', [TeacherController::class, 'gradeEssayQuestion'])->name('teacher.quiz.answer.grade');
+
+        // Question Bank management
+        Route::get('/teacher/question-bank', [QuestionBankController::class, 'index'])->name('teacher.question-bank.index');
+        Route::get('/teacher/question-bank/create', [QuestionBankController::class, 'create'])->name('teacher.question-bank.create');
+        Route::post('/teacher/question-bank', [QuestionBankController::class, 'store'])->name('teacher.question-bank.store');
+        Route::get('/teacher/question-bank/{questionBank}/edit', [QuestionBankController::class, 'edit'])->name('teacher.question-bank.edit');
+        Route::put('/teacher/question-bank/{questionBank}', [QuestionBankController::class, 'update'])->name('teacher.question-bank.update');
+        Route::delete('/teacher/question-bank/{questionBank}', [QuestionBankController::class, 'destroy'])->name('teacher.question-bank.destroy');
+        Route::get('/teacher/question-bank-categories', [QuestionBankController::class, 'categories'])->name('teacher.question-bank.categories');
+        Route::post('/teacher/question-bank-categories', [QuestionBankController::class, 'storeCategory'])->name('teacher.question-bank.categories.store');
+        Route::get('/teacher/question-bank/api/questions', [QuestionBankController::class, 'getQuestionsForImport'])->name('teacher.question-bank.api.questions');
     });
 
     // murid

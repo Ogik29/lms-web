@@ -18,6 +18,12 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Custom Animations -->
+    <link rel="stylesheet" href="{{ asset('css/animations.css') }}" />
+    
+    <!-- Enhanced Visual Styling -->
+    <link rel="stylesheet" href="{{ asset('css/enhanced-style.css') }}" />
 
     <style>
       body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }

@@ -27,16 +27,16 @@
         <!-- Form Register -->
         <div class="col-md-5 register-form-container">
             <div class="register-form-wrapper">
-                <div class="text-center">
+                <div class="text-center animate-fade-in">
                     <div class="register-icon"><i class="fa-solid fa-user-plus"></i></div>
-                    <h2>Buat Akun Baru</h2>
+                    <h2 class="gradient-heading">Buat Akun Baru</h2>
                     <p class="text-muted">Mari Bergabung bersama kami!</p>
                 </div>
                 <form method="POST" action="{{ route('register') }}" class="mt-4">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Masukkan nama lengkap" required>
+                        <input type="text" class="form-control form-control-modern @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Masukkan nama lengkap" required>
                          @error('name')<span class="text-danger small">{{ $message }}</span>@enderror
                     </div>
                     <div class="mb-3">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary w-100 py-3">Daftar</button>
+                    <button type="submit" class="btn btn-modern-primary w-100 py-3">Daftar</button>
                 </form>
                 <div class="text-center mt-4">
                     <p class="text-muted">Sudah punya akun? <a href="{{ route('login') }}">Masuk di sini</a></p>

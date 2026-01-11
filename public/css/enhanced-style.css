@@ -1,0 +1,752 @@
+/* ============================================
+   LMS Website - Enhanced Visual Styling
+   Significant visual improvements for modern look
+   ============================================ */
+
+/* ============================================
+   1. CSS VARIABLES - Enhanced Color Palette
+   ============================================ */
+
+:root {
+    /* Vibrant Gradients */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --gradient-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --gradient-danger: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+    /* Animated Background Gradient */
+    --gradient-animated: linear-gradient(
+        -45deg,
+        #667eea,
+        #764ba2,
+        #f093fb,
+        #4facfe
+    );
+
+    /* Modern Shadows */
+    --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.15);
+    --shadow-colored-primary: 0 8px 25px rgba(102, 126, 234, 0.3);
+    --shadow-colored-success: 0 8px 25px rgba(17, 153, 142, 0.3);
+    --shadow-colored-info: 0 8px 25px rgba(79, 172, 254, 0.3);
+
+    /* Vibrant Accent Colors */
+    --accent-pink: #ff6b6b;
+    --accent-teal: #4ecdc4;
+    --accent-yellow: #ffe66d;
+    --accent-mint: #a8e6cf;
+    --accent-purple: #b388ff;
+}
+
+/* ============================================
+   2. GLOBAL ENHANCEMENTS
+   ============================================ */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Background for Body */
+body.animated-bg {
+    background: var(--gradient-animated);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================================
+   3. ENHANCED CARDS
+   ============================================ */
+
+/* Modern Card Design */
+.card-modern {
+    border-radius: 20px;
+    border: none;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    background: white;
+}
+
+.card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+
+/* Gradient Card */
+.card-gradient-primary {
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: var(--shadow-colored-primary);
+    transition: all 0.4s ease;
+}
+
+.card-gradient-primary:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(102, 126, 234, 0.4);
+}
+
+.card-gradient-success {
+    background: var(--gradient-success);
+    color: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow-colored-success);
+}
+
+.card-gradient-info {
+    background: var(--gradient-info);
+    color: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow-colored-info);
+}
+
+/* Glassmorphism Card */
+.card-glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Card Effect */
+.card-floating {
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-floating::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: var(--gradient-primary);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-floating:hover::before {
+    opacity: 1;
+}
+
+.card-floating:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   4. ENHANCED BUTTONS
+   ============================================ */
+
+/* Modern Primary Button */
+.btn-modern-primary {
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    color: white;
+    box-shadow: var(--shadow-colored-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-modern-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+    color: white;
+}
+
+.btn-modern-primary:active {
+    transform: translateY(-1px);
+}
+
+/* Modern Success Button */
+.btn-modern-success {
+    background: var(--gradient-success);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    color: white;
+    box-shadow: var(--shadow-colored-success);
+    transition: all 0.3s ease;
+}
+
+.btn-modern-success:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(17, 153, 142, 0.5);
+    color: white;
+}
+
+/* Modern Info Button */
+.btn-modern-info {
+    background: var(--gradient-info);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    color: white;
+    box-shadow: var(--shadow-colored-info);
+    transition: all 0.3s ease;
+}
+
+.btn-modern-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(79, 172, 254, 0.5);
+    color: white;
+}
+
+/* Glow Button */
+.btn-glow {
+    position: relative;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    animation: btnGlow 2s ease-in-out infinite;
+}
+
+@keyframes btnGlow {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+    }
+}
+
+/* ============================================
+   5. ENHANCED BADGES
+   ============================================ */
+
+/* Vibrant Badges */
+.badge-vibrant-primary {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.badge-vibrant-success {
+    background: var(--gradient-success);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(17, 153, 142, 0.3);
+}
+
+.badge-vibrant-info {
+    background: var(--gradient-info);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(79, 172, 254, 0.3);
+}
+
+.badge-vibrant-warning {
+    background: var(--gradient-warning);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(250, 112, 154, 0.3);
+}
+
+.badge-vibrant-danger {
+    background: var(--gradient-danger);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(240, 147, 251, 0.3);
+}
+
+/* Glow Badge */
+.badge-glow-pulse {
+    animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    }
+}
+
+/* ============================================
+   6. ENHANCED FORMS
+   ============================================ */
+
+/* Modern Input */
+.form-control-modern {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 14px 20px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-control-modern:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+    background: white;
+    outline: none;
+}
+
+/* Floating Label Input */
+.floating-label {
+    position: relative;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+    transform: translateY(-30px) scale(0.9);
+    color: #667eea;
+}
+
+.floating-label label {
+    position: absolute;
+    left: 20px;
+    top: 14px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    color: #999;
+}
+
+/* ============================================
+   7. NAVBAR ENHANCEMENTS
+   ============================================ */
+
+.navbar-modern {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.navbar-modern.scrolled {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-brand-modern {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   8. SIDEBAR ENHANCEMENTS
+   ============================================ */
+
+.sidebar-modern {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-item-modern {
+    position: relative;
+    padding: 12px 20px;
+    margin: 4px 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar-item-modern::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gradient-primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.sidebar-item-modern:hover,
+.sidebar-item-modern.active {
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.1),
+        rgba(118, 75, 162, 0.1)
+    );
+    padding-left: 24px;
+}
+
+.sidebar-item-modern:hover::before,
+.sidebar-item-modern.active::before {
+    transform: scaleY(1);
+}
+
+.sidebar-item-modern i {
+    margin-right: 12px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-item-modern:hover i {
+    transform: scale(1.2) rotate(5deg);
+    color: #667eea;
+}
+
+/* ============================================
+   9. STAT CARDS (Dashboard)
+   ============================================ */
+
+.stat-card-modern {
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow-colored-primary);
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card-modern::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+    );
+    animation: statCardShine 3s ease-in-out infinite;
+}
+
+@keyframes statCardShine {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-30%, -30%);
+    }
+}
+
+.stat-card-modern:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(102, 126, 234, 0.4);
+}
+
+.stat-card-modern .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card-modern .stat-icon {
+    font-size: 3rem;
+    opacity: 0.2;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/* Variant Colors for Stat Cards */
+.stat-card-success {
+    background: var(--gradient-success);
+    box-shadow: var(--shadow-colored-success);
+}
+
+.stat-card-info {
+    background: var(--gradient-info);
+    box-shadow: var(--shadow-colored-info);
+}
+
+.stat-card-warning {
+    background: var(--gradient-warning);
+    box-shadow: 0 8px 25px rgba(250, 112, 154, 0.3);
+}
+
+/* ============================================
+   10. PROGRESS BARS
+   ============================================ */
+
+.progress-modern {
+    height: 12px;
+    border-radius: 20px;
+    background: #e0e0e0;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-gradient {
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    transition: width 0.6s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-gradient::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ============================================
+   11. TYPOGRAPHY ENHANCEMENTS
+   ============================================ */
+
+.gradient-heading {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.text-shadow-soft {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-strong {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animated Underline */
+.underline-animated {
+    position: relative;
+    display: inline-block;
+}
+
+.underline-animated::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.underline-animated:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   12. ALERT ENHANCEMENTS
+   ============================================ */
+
+.alert-modern {
+    border-radius: 12px;
+    border: none;
+    padding: 16px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.alert-modern-success {
+    background: linear-gradient(
+        135deg,
+        rgba(17, 153, 142, 0.1),
+        rgba(56, 239, 125, 0.1)
+    );
+    border-left: 4px solid #11998e;
+    color: #0d7369;
+}
+
+.alert-modern-danger {
+    background: linear-gradient(
+        135deg,
+        rgba(240, 147, 251, 0.1),
+        rgba(245, 87, 108, 0.1)
+    );
+    border-left: 4px solid #f093fb;
+    color: #a6156d;
+}
+
+.alert-modern-info {
+    background: linear-gradient(
+        135deg,
+        rgba(79, 172, 254, 0.1),
+        rgba(0, 242, 254, 0.1)
+    );
+    border-left: 4px solid #4facfe;
+    color: #2563a8;
+}
+
+/* ============================================
+   13. TABLE ENHANCEMENTS
+   ============================================ */
+
+.table-modern {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table-modern thead {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.table-modern tbody tr {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table-modern tbody tr:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.05),
+        rgba(118, 75, 162, 0.05)
+    );
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   14. MODAL ENHANCEMENTS
+   ============================================ */
+
+.modal-modern .modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.modal-modern .modal-header {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 20px 30px;
+}
+
+.modal-modern .modal-body {
+    padding: 30px;
+}
+
+/* ============================================
+   15. UTILITY CLASSES
+   ============================================ */
+
+.rounded-modern {
+    border-radius: 20px;
+}
+
+.shadow-modern {
+    box-shadow: var(--shadow-medium);
+}
+
+.shadow-modern-strong {
+    box-shadow: var(--shadow-strong);
+}
+
+.bg-gradient-primary {
+    background: var(--gradient-primary);
+}
+
+.bg-gradient-success {
+    background: var(--gradient-success);
+}
+
+.bg-gradient-info {
+    background: var(--gradient-info);
+}
+
+/* ============================================
+   16. RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    .stat-card-modern {
+        margin-bottom: 20px;
+    }
+
+    .card-modern {
+        margin-bottom: 15px;
+    }
+
+    .btn-modern-primary,
+    .btn-modern-success,
+    .btn-modern-info {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* ============================================
+   17. PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+.card-modern,
+.btn-modern-primary,
+.btn-modern-success,
+.stat-card-modern {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ============================================
+   END OF ENHANCED STYLING
+   ============================================ */

@@ -5,7 +5,7 @@
 @push('styles')
 <style>
     .hero-section {
-        background: linear-gradient(rgba(39, 91, 224, 0.8), rgba(39, 91, 224, 0.8)), url("{{ asset('images/hero-bg.jpg') }}");
+        background: linear-gradient(rgba(3, 21, 69, 0.8), rgba(3, 21, 69, 0.8)), url("{{ asset('images/hero-bg.jpg') }}");
         background-size: cover;
         background-position: center;
         height: 70vh;
@@ -42,7 +42,7 @@
 {{-- Hero Section --}}
 <div class="hero-section">
     <div class="container">
-        <h1 class="display-4 fw-bold">YAYASAN PENDIDIKAN AL-FASYAH</h1>
+        <h1 class="display-4 fw-bold gradient-heading animate-fade-in">YAYASAN PENDIDIKAN AL-FASYAH</h1>
         <p class="lead my-4">Selamat datang di platform e-learning kami</p>
         @auth
             @if(Auth::user()->role_id == 2)

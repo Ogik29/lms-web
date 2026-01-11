@@ -18,6 +18,12 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Custom Animations -->
+    <link rel="stylesheet" href="{{ asset('css/animations.css') }}" />
+    
+    <!-- Enhanced Visual Styling -->
+    <link rel="stylesheet" href="{{ asset('css/enhanced-style.css') }}" />
 
     <style>
       body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
@@ -65,6 +71,7 @@
             <a class="nav-link {{ request()->routeIs('teacher.dashboard') ? 'active' : '' }}" href="{{ route('teacher.dashboard') }}"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a>
             {{-- <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#createCourseModal"><i class="fas fa-plus me-2"></i> Buat Kelas</a> --}}
             <a class="nav-link {{ request()->routeIs('teacher.submissions.pending') ? 'active' : '' }}" href="{{ route('teacher.submissions.pending') }}"><i class="fas fa-clock me-2"></i> Submisi Tertunda</a>
+            <a class="nav-link {{ request()->routeIs('teacher.question-bank.*') ? 'active' : '' }}" href="{{ route('teacher.question-bank.index') }}"><i class="fas fa-database me-2"></i> Bank Soal</a>
             {{-- <a class="nav-link" href="{{ route('teacher.dashboard') }}"><i class="fas fa-book-open me-2"></i> Kelola Kelas</a> --}}
 
             <div class="mt-3 border-top pt-3">

@@ -29,9 +29,9 @@
         <!-- Kolom Kiri: Form Login -->
         <div class="col-md-5 d-flex justify-content-center align-items-center">
             <div class="login-form-wrapper">
-                <div class="text-center">
+                <div class="text-center animate-fade-in">
                     <div class="login-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <h2>Selamat Datang Kembali</h2>
+                    <h2 class="gradient-heading">Selamat Datang Kembali</h2>
                     <p class="text-muted">Masuk ke akun Anda untuk melanjutkan</p>
                 </div>
 
@@ -41,7 +41,7 @@
                         <label for="email" class="form-label">Email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required placeholder="Masukkan email">
+                            <input type="email" class="form-control form-control-modern @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required placeholder="Masukkan email">
                         </div>
                         @error('email')
                             <span class="text-danger small mt-1">{{ $message }}</span>
@@ -74,7 +74,7 @@
         
         <!-- Kolom Kanan: Panel Info -->
         <div class="col-md-7 info-panel">
-            <h1 class="display-5 fw-bold">Platform E-Learning Modern</h1>
+            <h1 class="display-5 fw-bold">Platform E-Learning</h1>
             <p class="lead my-3">Aplikasi untuk mengelola kursus, materi, dan aktivitas pembelajaran secara digital.</p>
             <img src="{{ asset('img/gambar2.png') }}" alt="Siswa belajar bersama" class="mt-4 img-fluid" width="400" />
         </div>

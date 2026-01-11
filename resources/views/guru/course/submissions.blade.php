@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card">
+    <div class="card card-modern shadow-modern animate-fade-in">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Submisi untuk: {{ $assignment->title }}</h4>
+                <h4 class="gradient-heading"><i class="fas fa-file-upload me-2"></i>Submisi untuk: {{ $assignment->title }}</h4>
                 <a href="{{ route('teacher.courses.show', $assignment->course) }}" class="btn btn-sm btn-secondary">Kembali</a>
             </div>
 
-            <table class="table table-hover">
+            <table class="table table-modern">
                 <thead><tr><th>Siswa</th><th>Pesan</th><th>Waktu</th><th>Deadline</th><th>Skor</th><th>Aksi</th></tr></thead>
                 <tbody>
                     @php $students = $assignment->course->students; @endphp

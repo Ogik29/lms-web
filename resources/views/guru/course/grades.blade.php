@@ -4,16 +4,16 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card">
+    <div class="card card-modern shadow-modern animate-fade-in">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Nilai - {{ $course->name }}</h4>
+                <h4 class="gradient-heading"><i class="fas fa-clipboard-list me-2"></i>Nilai - {{ $course->name }}</h4>
                 <a href="{{ route('teacher.courses.show', $course) }}" class="btn btn-sm btn-secondary">Kembali</a>
             </div>
 
-            @if(session('success')) <div class="alert alert-success">{{ session('success') }}</div> @endif
+            @if(session('success')) <div class="alert alert-modern alert-modern-success">{{ session('success') }}</div> @endif
 
-            <table class="table table-hover">
+            <table class="table table-modern">
                 <thead>
                     <tr><th>Judul</th><th>Siswa</th><th>Skor</th><th>Deskripsi</th><th>Aksi</th></tr>
                 </thead>

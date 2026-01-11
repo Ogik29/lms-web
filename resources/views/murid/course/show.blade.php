@@ -4,18 +4,18 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card">
+    <div class="card card-modern shadow-modern animate-fade-in">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>{{ $course->name }}</h4>
+                <h4 class="gradient-heading">{{ $course->name }}</h4>
                 <a href="{{ route('student.courses.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
             </div>
 
             <p class="text-muted">{{ $course->description }}</p>
             <p><strong>Guru:</strong> {{ $course->teacher->name }}</p>
 
-            <h5 class="mt-4">Tugas & Quiz</h5>
-            <table class="table table-hover">
+            <h5 class="mt-4"><i class="fas fa-tasks me-2 text-primary"></i>Tugas & Quiz</h5>
+            <table class="table table-modern">
                 <thead><tr><th>Judul</th><th>Tipe</th><th>Due</th><th>Status</th><th>Aksi</th></tr></thead>
                 <tbody>
                     @forelse($course->assignments as $a)

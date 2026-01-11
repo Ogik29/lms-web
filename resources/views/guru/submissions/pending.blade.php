@@ -4,13 +4,13 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card">
+    <div class="card card-modern shadow-modern animate-fade-in">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Submisi Menunggu Penilaian</h4>
+                <h4 class="gradient-heading"><i class="fas fa-clock me-2"></i>Submisi Menunggu Penilaian</h4>
             </div>
 
-            <table class="table table-hover">
+            <table class="table table-modern">
                 <thead><tr><th>Tugas</th><th>Siswa</th><th>Waktu</th><th>Aksi</th></tr></thead>
                 <tbody>
                     @forelse($submissions as $sub)
@@ -24,7 +24,7 @@
                                     $isLate = $deadline && $sub->submitted_at->gt($deadline);
                                 @endphp
                                 @if($isLate)
-                                    <span class="badge bg-warning text-dark ms-2">
+                                    <span class="badge badge-vibrant-warning ms-2">
                                         <i class="fas fa-clock"></i> Terlambat
                                     </span>
                                 @endif
